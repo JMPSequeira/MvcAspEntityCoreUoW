@@ -73,9 +73,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201703032357398_InitialModel.resx">
       <DependentUpon>201703032357398_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
