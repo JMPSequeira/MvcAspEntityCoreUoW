@@ -12,6 +12,7 @@ namespace Persistence
 
         public DefaulContext() : base("name=DefaultContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     }
 }

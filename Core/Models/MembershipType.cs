@@ -2,7 +2,7 @@
 
 namespace Core.Models
 {
-    public class MembershipType : Entity
+    public class MembershipType : Customers
     {
     }
 }

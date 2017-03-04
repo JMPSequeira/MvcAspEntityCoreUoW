@@ -10,6 +10,8 @@ namespace Persistence.Interfaces
         DbSet<SalesAgent> SalesAgents { get; set; }
         DbSet<MembershipType> MembershipTypes { get; set; }
 
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+
         int SaveChanges();
     }
 }

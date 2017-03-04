@@ -2,6 +2,7 @@
 using Core.Interfaces.Repo;
 using Core.Models;
 using Persistence.Interfaces;
+using Persistence.Repo;
 
 namespace Persistence
 {
@@ -10,10 +11,16 @@ namespace Persistence
         private readonly IContext _context;
 
         public IRepo<Customer> Customers { get; set; }
-        public IRepo<SalesAgent> SalesAgents { get; set; }
+        public ISalesAgentRepo SalesAgents { get; set; }
         public IRepo<MembershipType> MembershipsTypes { get; set; }
 
-        public UnitOfWork(IContext context) => _context = context;
+        public UnitOfWork(IContext context)
+        {
+            _context = context;
+            Customers = new Repo<Customer>(context);
+            SalesAgents = new SalesAgentRepo(context);
+            MembershipsTypes = new Repo<MembershipType>(context);
+        }
 
         public int Complete()
         {
@@ -23,7 +30,6 @@ namespace Persistence
         public void Dispose()
         {
             _context.Dispose();
-            this.Dispose();
         }
     }
 }

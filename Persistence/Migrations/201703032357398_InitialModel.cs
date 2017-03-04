@@ -12,14 +12,17 @@ namespace Persistence.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IsSubscribbedToNewsLetter = c.Boolean(nullable: false),
+                        IsSubscribedToNewsletter = c.Boolean(nullable: false),
                         MembershipTypeId = c.Int(nullable: false),
+                        SalesAgentId = c.Int(nullable: false),
                         DateOfBirth = c.DateTime(),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.MembershipTypes", t => t.MembershipTypeId, cascadeDelete: true)
-                .Index(t => t.MembershipTypeId);
+                .ForeignKey("dbo.SalesAgents", t => t.SalesAgentId, cascadeDelete: true)
+                .Index(t => t.MembershipTypeId)
+                .Index(t => t.SalesAgentId);
             
             CreateTable(
                 "dbo.MembershipTypes",
@@ -45,7 +48,9 @@ namespace Persistence.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Customers", "SalesAgentId", "dbo.SalesAgents");
             DropForeignKey("dbo.Customers", "MembershipTypeId", "dbo.MembershipTypes");
+            DropIndex("dbo.Customers", new[] { "SalesAgentId" });
             DropIndex("dbo.Customers", new[] { "MembershipTypeId" });
             DropTable("dbo.SalesAgents");
             DropTable("dbo.MembershipTypes");

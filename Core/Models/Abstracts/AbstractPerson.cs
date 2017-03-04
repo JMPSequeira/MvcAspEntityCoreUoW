@@ -2,7 +2,7 @@
 
 namespace Core.Models.Abstracts
 {
-    public abstract class AbstractPerson : Entity
+    public abstract class AbstractPerson : Customers
     {
         public DateTime? DateOfBirth { get; set; }
     }

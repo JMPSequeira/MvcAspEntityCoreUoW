@@ -21,9 +21,14 @@ namespace Persistence.Migrations
             context.MembershipTypes.AddOrUpdate(new MembershipType { Id = 3, Name = "Quarterly" });
             context.MembershipTypes.AddOrUpdate(new MembershipType { Id = 4, Name = "Annually" });
 
-            context.Customers.AddOrUpdate(new Customer { Id = 1, Name = "Michael Flynn", MembershipTypeId = 2, IsSubscribbedToNewsLetter = false });
-            context.Customers.AddOrUpdate(new Customer { Id = 2, Name = "George Michael", MembershipTypeId = 1, IsSubscribbedToNewsLetter = false });
-            context.Customers.AddOrUpdate(new Customer { Id = 3, Name = "George Michael", MembershipTypeId = 4, IsSubscribbedToNewsLetter = false });
+            context.SalesAgents.AddOrUpdate(new SalesAgent { Id = 1, Name = "Michael Jordan", IsOperational = true });
+            context.SalesAgents.AddOrUpdate(new SalesAgent { Id = 2, Name = "Michael Jackson", IsOperational = false });
+            context.SalesAgents.AddOrUpdate(new SalesAgent { Id = 3, Name = "Maddona", IsOperational = true});
+
+            context.Customers.AddOrUpdate(new Customer { Id = 1, Name = "Michael Flynn", MembershipTypeId = 2, IsSubscribedToNewsletter = false, SalesAgentId = 1 });
+            context.Customers.AddOrUpdate(new Customer { Id = 2, Name = "George Michael", MembershipTypeId = 1, IsSubscribedToNewsletter = false, SalesAgentId = 1});
+            context.Customers.AddOrUpdate(new Customer { Id = 3, Name = "George Michael", MembershipTypeId = 4, IsSubscribedToNewsletter = false, SalesAgentId = 1 });
+            
         }
     }
 }
